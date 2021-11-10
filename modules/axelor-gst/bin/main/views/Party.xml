@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  	http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+  	
+  	<grid model="com.axelor.gst.db.Party" title="Party" name="party-grid">
+  	
+  		<field name="reference"/>
+  		<field name="name"/>
+  		<field name="type"/>
+  		<field name="customer"/>
+  		<field name="supplier"/>
+  		<field name="gstin"/>
+  		<field name="contact"/>
+  		<field name="address"/>
+		
+  	</grid>
+  	
+  	<form model="com.axelor.gst.db.Party" title="Party" name="party-form">
+  		<panel>
+	  		<field name="reference"/>
+	  		<field name="name"/>
+	  		<field name="type"/>
+	  		<field name="customer"/>
+	  		<field name="supplier"/>
+	  		<field name="gstin"/>
+	  		<field name="contact">
+	  			<viewer><![CDATA[
+				  <contact>
+				  {{record.name}} {{record.type}}<br>
+				  {{record.primaryEmail}}, {{record.secondaryEmail}} - {{record.primaryPhone}}<br>
+				  {{record.secondaryPhone}}
+				  </contact>
+				  ]]></viewer>
+				  <editor x-show-titles="false">
+				  	<field name="name" colSpan="12"/>
+				    <field name="type" colSpan="12"/>
+				    <field name="primaryEmail" colSpan="12"/>
+				    <field name="secondaryEmail" colSpan="12"/>
+				    <field name="primaryPhone" colSpan="4"/>
+				    <field name="secondaryPhone" colSpan="4"/>
+				  </editor>
+	  		</field>
+	  		<field name="address"> 
+	  			<viewer><![CDATA[
+				  <address>
+				  {{record.type}} {{record.line1}}<br>
+				  {{record.line2}}, {{record.city}} - {{record.state}}<br>
+				  {{record.country.name}}, {{record.pinCode}}
+				  </address>
+				  ]]></viewer>
+				  <editor x-show-titles="false">
+				    <field name="type" colSpan="12"/>
+				    <field name="line1" colSpan="12"/>
+				    <field name="line2" colSpan="4"/>
+				    <field name="city" colSpan="4"/>
+				    <field name="state" colSpan="4"/>
+				    <field name="country" colSpan="12" />
+				    <field name="pinCode" colSpan="4" />
+				  </editor>
+	  		</field>
+  		</panel>
+  	</form>
+  	
+</object-views>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  	http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+  	
+  	<menuitem title="Dashboard" name="dashboard-root"/>
+  	
+  	<menuitem title="Party" name="dashboard-root-party" icon="fa-id-card" icon-background="blue"  parent="dashboard-root" />
+  	
+  	<menuitem title="Party" name="dashboard-root-party-party" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-party" action="action.dashboard.root.party" />
+  	
+  	<action-view name="action.dashboard.root.party" title="Party" model="com.axelor.gst.db.Party" icon="fas fa-user"  >
+  		<view type="grid" name="party-grid" />
+  		<view type="form" name="party-form" />	
+  	</action-view>
+  	
+  	<menuitem title="Contact" name="dashboard-root-party-contact" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-party" action="action.dashboard.root.contact" />
+  	
+  	<action-view name="action.dashboard.root.contact" title="Contact" model="com.axelor.gst.db.Contact" icon="fas fa-user"  >
+  		<view type="grid" name="contact-grid" />
+  		<view type="form" name="contact-form" />	
+  	</action-view>
+  	
+  	<menuitem title="Configurations" name="dashboard-root-party-configurations" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-party" />
+  	
+  	<menuitem title="Address" name="dashboard-root-address" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-party-configurations" action="action.dashboard.root.address" />
+  	
+  	<action-view name="action.dashboard.root.address" title="Address" model="com.axelor.gst.db.Address" icon="fas fa-user"  >
+  		<view type="grid" name="address-grid" />
+  		<view type="form" name="address-form" />
+  		
+  	</action-view>
+  	
+  	<menuitem title="City" name="dashboard-root-city"  parent="dashboard-root-party-configurations" action="action.dashboard.root.city" />
+  	
+  	<action-view name="action.dashboard.root.city" title="City" model="com.axelor.gst.db.City" icon="fas fa-user"  >
+  		<view type="grid" name="city-grid" />
+  		<view type="form" name="city-form" />
+  		
+  	</action-view>
+  	
+  	<menuitem title="State" name="dashboard-root-state"   parent="dashboard-root-party-configurations" action="action.dashboard.root.state" />
+  	
+  	<action-view name="action.dashboard.root.state" title="State" model="com.axelor.gst.db.State" icon="fas fa-user"  >
+  		<view type="grid" name="state-grid" />
+  		<view type="form" name="state-form" />
+  		
+  	</action-view>
+  	
+  	<menuitem title="Country" name="dashboard-root-country"  parent="dashboard-root-party-configurations" action="action.dashboard.root.country" />
+  	
+  	<action-view name="action.dashboard.root.country" title="Country" model="com.axelor.gst.db.Country" icon="fas fa-user"  >
+  		<view type="grid" name="country-grid" />
+  		<view type="form" name="country-form" />
+  		
+  	</action-view>
+  	
+	<menuitem title="Product" name="dashboard-root-product" icon="fa-id-card" icon-background="blue"  parent="dashboard-root" />
+  	
+  	<menuitem title="Product" name="dashboard-root-product-product" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-product" action="action.dashboard.root.party" />
+  	
+  	<menuitem title="Product Categories" name="dashboard-root-product-productCategories" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-product" action="action.dashboard.root.party" />
+  	
+	
+</object-views>
