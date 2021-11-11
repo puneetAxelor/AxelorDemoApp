@@ -6,8 +6,8 @@
 
 	<module package="com.axelor.gst.db" name="gst"/>
 	
-	<entity  name="Address" cacheable="true">
-		<string name="name" title="Nme" required="true"/>
+	<entity  name="Product" cacheable="true">
+		<string name="name" title="Name" required="true"/>
 		<string name="code" title="Code" required="true" />
 		<string name="hsbn" title="HSBN" />
 		<many-to-one ref="com.axelor.gst.db.ProductCategory" name="category" title="Category"/>
