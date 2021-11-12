@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  	http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+  	
+  	<grid model="com.axelor.gst.db.Invoice" title="Invoice" name="invoice-grid">
+  	
+  		<field name="status"/>
+  		<field name="company"/>
+  		<field name="reference"/>
+  		<field name="date"/>
+  		<field name="priority"/>
+  		<field name="party"/>
+  		<field name="partContact"/>
+  		<field name="invoiceAddress"/>
+  		<field name="shippingAddress"/>
+  		<field name="useInvoiceAddressAsShipping"/>
+  		<field name="netAmount"/>
+  		<field name="netIGST"/>
+  		<field name="netCGST"/>
+  		<field name="netSGST"/>
+  		<field name="grossAmount"/>
+  		<field name="invoiceItems"/>
+  		
+  	
+
+  	</grid>
+  	
+  	<form model="com.axelor.gst.db.Invoice" title="Invoice" name="invoice-form">
+  		<toolbar>
+  			<button onClick="" name="print" title="Print"/>
+  		</toolbar>
+  		<panel>
+	  		<field name="status" widget="NavSelect"/>
+	  		<field name="company"/>
+	  		<field name="reference"/>
+	  		<field name="date"/>
+	  		<field name="priority"/>
+	  		<field name="party"/>
+	  		<field name="partContact"/>
+	  		<field name="invoiceAddress"/>
+	  		<field name="shippingAddress"/>
+	  		<field name="useInvoiceAddressAsShipping"/>
+	  		<field name="netAmount"/>
+	  		<field name="netIGST"/>
+	  		<field name="netCGST"/>
+	  		<field name="netSGST"/>
+	  		<field name="grossAmount"/>
+	  		<field name="invoiceItems"/>
+  		</panel>
+  	</form>
+  	
+  	<kanban columnBy="status" model="com.axelor.gst.db.Invoice" sequenceBy="priority" title="Invoice" name="invoice-kanban"
+		draggable="true" onMove="action-performance-validate-kanban-on-move" onNew="action-performance-record-kanban-on-new" limit="2">
+		<field name="status"/>
+		<field name="company"/>
+		<field name="reference"/>
+		<field name="date" />
+		<field name="priority" />
+		<field name="party" />
+		<field name="partyContact" />
+		<field name="invoiceAddress" />
+		<field name="shippingAddress" />
+		<field name="useInvoiceAddressAsShipping" />
+		<field name="netAmount" />
+		<field name="netIGST" />
+		<field name="netCSGT" />
+		<field name="netSGST" />
+		<field name="grossAmount" />
+		<field name="invoiceItems" />
+	
+		<template>
+			<![CDATA[
+				<div>
+					<h4>Status:</h4>
+					<h5>{{record.status}}</h5>
+					<br/>
+					<h4>Company:</h4>
+					<h5>{{record.company}}</h5>
+					<br/>
+					<h4>Reference:</h4>
+					<h5>{{record.reference}}</h5>
+					<br/>
+					<h4>Date:</h4>
+					<h5>{{record.date}}</h5>
+					<br/>
+					<h4>Priority:</h4>
+					<h5>{{record.priority}}</h5>
+					<br/>
+					<h4>Party:</h4>
+					<h5>{{record.party}}</h5>
+					<br/>
+					<h4>Party contact:</h4>
+					<h5>{{record.partyContact}}</h5>
+					<br/>
+					<h4>Invoice address:</h4>
+					<h5>{{record.invoiceAddress}}</h5>
+					<br/>
+					<h4>Shipping address:</h4>
+					<h5>{{record.shippingAddress}}</h5>
+					<br/>
+					<h4>Use invoice address as shipping:</h4>
+					<h5>{{record.useInvoiceAddressAsShipping}}</h5>
+					<br/>
+					<h4>Net amount:</h4>
+					<h5>{{record.netAmount}}</h5>
+					<br/>
+					<h4>Net IGST:</h4>
+					<h5>{{record.netIGST}}</h5>
+					<br/>
+					<h4>Net CSGT:</h4>
+					<h5>{{record.netCSGT}}</h5>
+					<br/>
+					<h4>net SGST:</h4>
+					<h5>{{record.netSGST}}</h5>
+					<br/>
+					<h4>Gross amount:</h4>
+					<h5>{{record.grossAmount}}</h5>
+					<br/>
+					<h4>Invoice items:</h4>
+					<h5>{{record.invoiceItems}}</h5>
+						
+				</div>
+			]]>
+		</template>
+	</kanban>
+  	
+</object-views>

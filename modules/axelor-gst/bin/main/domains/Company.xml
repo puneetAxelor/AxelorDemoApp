@@ -9,7 +9,11 @@
 	<entity  name="Company" cacheable="true">
 	
 		<string name="name" title="Type" required="true"/>
-	
+		<many-to-one ref="com.axelor.meta.db.MetaFile" name="logo" title="Logo" />
+		<one-to-many ref="com.axelor.gst.db.Contact" name="contact" title="Contact"/>
+		<string name="gstin" title="GSTIN" min="15" max="15"/>
+		<one-to-many ref="com.axelor.gst.db.BankAccount" name="bankDetails" title="Bank Details"/>
+		<many-to-one ref="com.axelor.gst.db.Address" name="address" title="Address"/>
 	</entity>
   
 </domain-models>        

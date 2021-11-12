@@ -30,4 +30,9 @@
   		<option value="cancelled">Cancelled</option>
   	</selection>
   	
+  	<selection name="options.bankAccount">
+  		<option value="saving">Saving</option>
+  		<option value="current">Current</option>
+  	</selection>
+  	
 </object-views> 
