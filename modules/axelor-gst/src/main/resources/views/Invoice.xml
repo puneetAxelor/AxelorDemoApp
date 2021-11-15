@@ -4,12 +4,12 @@
   	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   	http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
   	
-  	<grid model="com.axelor.gst.db.Invoice" title="Invoice" name="invoice-grid">
+  	<grid model="com.axelor.gst.db.Invoice" title="Create invoice" name="invoice-grid" onNew="action-invoice-record-default-onNew">
   	
-  		<field name="status"/>
+  		<field name="status" />
   		<field name="company"/>
   		<field name="reference"/>
-  		<field name="date"/>
+  		<field name="dateTime"/>
   		<field name="priority"/>
   		<field name="party"/>
   		<field name="partContact"/>
@@ -22,28 +22,32 @@
   		<field name="netSGST"/>
   		<field name="grossAmount"/>
   		<field name="invoiceItems"/>
-  		
-  	
 
   	</grid>
   	
-  	<form model="com.axelor.gst.db.Invoice" title="Invoice" name="invoice-form">
+  	<form model="com.axelor.gst.db.Invoice" title="Create invoice" width="large" name="invoice-form" onNew="action-invoice-record-default-onNew, action-onNew-status">
   		<toolbar>
   			<button onClick="" name="print" title="Print"/>
   		</toolbar>
+  		<panel sidebar="true">
+	  		<button onClick="action-change-status-draft" name="draft" title="Draft"/>
+  			<button onClick="action-change-status-validated" name="validated" title="Validated"/>
+  			<button onClick="action-change-status-paid" name="paid" title="Paid"/>
+  			<button onClick="action-change-status-cancelled" name="Cancelled" title="Cancelled"/>
+  		</panel>
   		<panel>
-	  		<field name="status" widget="NavSelect"/>
+	  		<field name="status" widget="NavSelect" colSpan="12"/>
 	  		<field name="company"/>
 	  		<field name="reference"/>
-	  		<field name="date"/>
+	  		<field name="dateTime"/>
 	  		<field name="priority"/>
-	  		<field name="party"/>
-	  		<field name="partContact"/>
-	  		<field name="invoiceAddress"/>
-	  		<field name="shippingAddress"/>
+	  		<field name="party" onChange="action-party-contact"/>
+	  		<field name="partyContact"/>
+	  		<field name="invoiceAddress" />
+	  		<field name="shippingAddress" />
 	  		<field name="useInvoiceAddressAsShipping"/>
 	  		<field name="netAmount"/>
-	  		<field name="netIGST"/>
+	  		<field name="netIGST" />
 	  		<field name="netCGST"/>
 	  		<field name="netSGST"/>
 	  		<field name="grossAmount"/>
@@ -56,16 +60,16 @@
 		<field name="status"/>
 		<field name="company"/>
 		<field name="reference"/>
-		<field name="date" />
+		<field name="dateTime" />
 		<field name="priority" />
 		<field name="party" />
 		<field name="partyContact" />
 		<field name="invoiceAddress" />
-		<field name="shippingAddress" />
+		<field name="shippingAddress"  />
 		<field name="useInvoiceAddressAsShipping" />
 		<field name="netAmount" />
 		<field name="netIGST" />
-		<field name="netCSGT" />
+		<field name="netCGST" />
 		<field name="netSGST" />
 		<field name="grossAmount" />
 		<field name="invoiceItems" />
@@ -83,7 +87,7 @@
 					<h5>{{record.reference}}</h5>
 					<br/>
 					<h4>Date:</h4>
-					<h5>{{record.date}}</h5>
+					<h5>{{record.dateTime}}</h5>
 					<br/>
 					<h4>Priority:</h4>
 					<h5>{{record.priority}}</h5>
@@ -110,7 +114,7 @@
 					<h5>{{record.netIGST}}</h5>
 					<br/>
 					<h4>Net CSGT:</h4>
-					<h5>{{record.netCSGT}}</h5>
+					<h5>{{record.netCGST}}</h5>
 					<br/>
 					<h4>net SGST:</h4>
 					<h5>{{record.netSGST}}</h5>
@@ -125,5 +129,95 @@
 			]]>
 		</template>
 	</kanban>
+	
+	<chart name="invoice-chart" title="Unpaid invoices per customer">
+	
+		<search-fields>
+			<field type="date" name="fromDate" title="From Date"/>
+			<field type="date" name="toDate" />
+		</search-fields>
+		
+		<dataset type="jpql">
+			<![CDATA[
+	  	
+	  ]]>
+		
+	</dataset>
+		
+	<category key="month" type="month"/> 
+  	<series key="amount" groupBy="lname" type="bar"/>
+	
+	</chart>
+	
+	<chart name="invoice-chart" title="Unpaid invoices per customer">
+	
+		<search-fields>
+			<field type="date" name="fromDate" title="From Date"/>
+			<field type="date" name="toDate" />
+		</search-fields>
+		
+		<dataset type="jpql">
+			<![CDATA[
+	  
+	  ]]>
+		
+	</dataset>
+		
+	<category key="month" type="month"/> 
+  	<series key="amount" groupBy="lname" type="bar"/>
+	
+	</chart>
+	
+	<chart name="invoice-chart" title="Unpaid invoices per customer">
+	
+		<search-fields>
+			<field type="date" name="fromDate" title="From Date"/>
+			<field type="date" name="toDate" />
+		</search-fields>
+		
+		<dataset type="jpql">
+			<![CDATA[
+	  
+	  ]]>
+		
+	</dataset>
+		
+	<category key="month" type="month"/> 
+  	<series key="amount" groupBy="lname" type="bar"/>
+	
+	</chart>
+	
+	<action-record name="action-invoice-record-default-onNew" model="com.axelor.gst.db.Invoice">
+		<field name="dateTime" expr="eval: __datetime__"/>
+
+	</action-record>
+	
+	
+	
+	<action-attrs name="action-party-contact">
+  		<attribute name="value" for="partyContact" expr="eval: __this__.party.contact"/>
+  		<attribute name="value" for="invoiceAddress" expr="eval: __this__.party.address"/>
+  		<attribute name="value" for="shippingAddress" expr="eval: __this__.party.address" if="useInvoiceAddressAsShipping == false"/>
+  	</action-attrs>
+  	
+  	<action-attrs name="action-onNew-status">
+  		<attribute name="value" for="status" expr="draft"/>
+  	</action-attrs>
+  	
+  	<action-attrs name="action-change-status-draft">
+  		<attribute name="value" for="status" expr="draft"/>
+  	</action-attrs>
+  	
+  	<action-attrs name="action-change-status-validated">
+  		<attribute name="value" for="status" expr="validated"/>
+  	</action-attrs>
+  	
+  	<action-attrs name="action-change-status-paid">
+  		<attribute name="value" for="status" expr="paid"/>
+  	</action-attrs>
+  	
+  	<action-attrs name="action-change-status-cancelled">
+  		<attribute name="value" for="status" expr="cancelled"/>
+  	</action-attrs>
   	
 </object-views>

@@ -13,7 +13,7 @@
 
   	</grid>
   	
-  	<form model="com.axelor.gst.db.ProductCategory" title="Product Category" name="productCategory-form">
+  	<form model="com.axelor.gst.db.ProductCategory" width="large" title="Product Category" name="productCategory-form">
   		<panel>
 	  		<field name="name"/>
 	  		<field name="code"/>

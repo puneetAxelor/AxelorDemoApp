@@ -8,7 +8,7 @@
 	
 	<entity name="Invoice" cacheable="true">
 	
-		<string name="status" title="Status" selection="options.Invoice" readonly="true"/>
+		<string name="status" title="Status" selection="options.Invoice"  readonly="true"/>
 		<many-to-one ref="com.axelor.gst.db.Company" name="company" title="Company" required="true" default="default company"/>
 		<string name="reference" title="Reference" readonly="true"/>
 		<datetime name="dateTime" tz="true" title="Date"/>
@@ -20,6 +20,7 @@
 		<boolean name="useInvoiceAddressAsShipping" title="Use invoice address as shipping"/>
 		<decimal name="netAmount" title="Net amount" readonly="true"/>
 		<decimal name="netIGST" title="Net IGST" readonly="true"/>
+		<decimal name="netCGST" title="Net CGST" readonly="true"/>
 		<decimal name="netSGST" title="Net SGST" readonly="true"/>
 		<decimal name="grossAmount" title="Gross amount" readonly="true"/>
 		<one-to-many ref="com.axelor.gst.db.InvoiceLine" name="invoiceItems" title="Invoice items"/>		

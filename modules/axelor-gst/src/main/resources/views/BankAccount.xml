@@ -14,7 +14,7 @@
 
   	</grid>
   	
-  	<form model="com.axelor.gst.db.BankAccount" title="Bank Account" name="bankAccount-form">
+  	<form model="com.axelor.gst.db.BankAccount" width="large" title="Bank Account" name="bankAccount-form">
   		<panel>
 	  		<field name="bank"/>
 	  		<field name="accountNo"/>

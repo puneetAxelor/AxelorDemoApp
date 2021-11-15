@@ -6,7 +6,7 @@
   	
   	<grid model="com.axelor.gst.db.Product" title="Product" name="product-grid">
 		<toolbar>
-			<button onClick="" name="createInvoice" title="Create Invoice"/>
+			<button onClick="action-open-createInvoice" name="createInvoice" title="Create Invoice"/>
 			<button onClick="" name="print" title="Print"/>
 		</toolbar>  	
   		<field name="name"/>
@@ -15,12 +15,12 @@
   		<field name="category"/>
   		<field name="salePrice"/>
   		<field name="costPrice"/>
-  		<field name="image" widget="image"/>
+  		<field name="image" widget="binary-link"/>
   		<field name="gstRate"/>
 
   	</grid>
   	
-  	<form model="com.axelor.gst.db.Product"  title="Product" name="product-form">
+  	<form model="com.axelor.gst.db.Product" width="large"  title="Product" name="product-form">
   		<panel>
 	  		<field name="name"/>
 	  		<field name="code"/>
@@ -28,7 +28,7 @@
 	  		<field name="category" onChange="action-gstRate"/>
 	  		<field name="salePrice"/>
 	  		<field name="costPrice"/>
-	  		<field name="image" widget="image"/>
+	  		<field name="image" widget="binary-link"/>
 	  		<field name="gstRate"/>
 	  	</panel>
   	</form>
@@ -71,8 +71,8 @@
   		<attribute name="value" for="gstRate" expr="eval: __this__.category.gstRate"/>
   	</action-attrs>
   	
-  	<action-record name="action-gst" model="com.axelor.gst.db.Product">
-  		<field name="gstRate" expr="eval: __parent__.gstRate"/>
-  	</action-record>
+	<action-view name="action-open-createInvoice" title="Create Invoice" model="com.axelor.gst.db.Invoice" icon="fas fa-user">
+		<view type="form" name="invoice-form"/>
+	</action-view>
   	
 </object-views>

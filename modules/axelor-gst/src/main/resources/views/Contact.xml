@@ -13,7 +13,7 @@
   		<field name="secondaryPhone"/>
   	</grid>
   	
-  	<form model="com.axelor.gst.db.Contact" title="Contact" name="contact-form">
+  	<form model="com.axelor.gst.db.Contact" width="large" title="Contact" name="contact-form">
   		<panel>
 			<field name="name"/>  	
 	  		<field name="type"/>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  	http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+  	
+  	<grid model="com.axelor.gst.db.InvoiceLine" title="InvoiceLine" name="invoiceLine-grid">
+  	
+  		<field name="product"/>
+  		<field name="hsbn"/>
+  		<field name="item"/>
+  		<field name="qty"/>
+  		<field name="price"/>
+  		<field name="netAmount"/>
+  		<field name="gstRate"/>
+  		<field name="igst"/>
+  		<field name="sgst"/>
+  		<field name="cgst"/>
+  		<field name="grossAmount"/>
+
+  	</grid>
+  	
+  	<form model="com.axelor.gst.db.InvoiceLine" width="large" title="InvoiceLine"  name="invoiceLine-form">
+  		<panel>
+	  		<field name="product" onChange="action-invoiceLine-gstRate"/>
+	  		<field name="hsbn"/>
+	  		<field name="item" onChange="action-call-igst, action-call-sgst"/>
+	  		<field name="qty" onChange="action-netAmount, action-call-igst, action-call-sgst"/>
+	  		<field name="price" onChange="action-netAmount"/>
+	  		<field name="netAmount" /> 
+	  		<field name="gstRate"/>
+	  		<field name="igst" />
+	  		<field name="sgst"/>
+	  		<field name="cgst"/>
+	  		<field name="grossAmount"/>
+  		</panel>
+  	</form>
+  	
+  	<action-record name="action-call-igst" model="com.axelor.gst.db.InvoiceLine" >
+  		<field name="igst" expr="call:com.axelor.gst.web.InvoiceLineController:generateIgst(netAmount, gstRate)" if="__parent__.invoiceAddress.state != __parent__.shippingAddress.state"/>
+  		<field name="grossAmount" expr="call:com.axelor.gst.web.InvoiceLineController:generateGrossAmount(netAmount, igst)" if="__parent__.invoiceAddress.state != __parent__.shippingAddress.state" />
+  	</action-record>
+  	
+  	<action-record name="action-call-sgst" model="com.axelor.gst.db.InvoiceLine">
+  		<field name="sgst, cgst" expr="call:com.axelor.gst.web.InvoiceLineController:generateSgst(netAmount, gstRate)" if="__parent__.invoiceAddress.state == __parent__.shippingAddress.state"/>
+  		<field name="grossAmount" expr="call:com.axelor.gst.web.InvoiceLineController:generateGrossAmount(netAmount, sgst, cgst)" if="__parent__.invoiceAddress.state == __parent__.shippingAddress.state"/>
+  	</action-record>
+  	
+  	<action-record name="action-call-method" model="com.axelor.gst.db.InvoiceLine">
+  		<field name="cgst" expr="call:com.axelor.gst.web.InvoiceLineController:exampleMethod" if="__parent__.invoiceAddress.state != __parent__.shippingAddress.state"/>
+  	</action-record>
+  	
+  	<action-record name="action-netAmount" model="com.axelor.gst.db.InvoiceLine" >
+  		<field name="netAmount" expr="call:com.axelor.gst.web.InvoiceLineController:generateNetAmount(qty, price)"/>
+  	</action-record>
+  	
+  	<action-attrs name="action-invoiceLine-gstRate">
+  		<attribute name="value" for="gstRate" expr="eval: __this__.product.gstRate"/>
+  		<attribute name="value" for="item" expr="eval:  __this__.product.name"/>
+  	</action-attrs>
+  	
+</object-views>

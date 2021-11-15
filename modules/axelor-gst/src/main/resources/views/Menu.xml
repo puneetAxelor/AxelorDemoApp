@@ -98,8 +98,6 @@
   	
   	<menuitem title="All Invoices" name="dashboard-root-invoice-allInvoices" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-invoice" action="action.dashboard.root.product" />
   	
-  	
-  	
   	<menuitem title="Company" name="dashboard-root-company" icon="fa-id-card" icon-background="blue"  parent="dashboard-root" />
   	
   	<menuitem title="Company" name="dashboard-root-company-company" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-company" action="action.dashboard.root.company" />
@@ -122,5 +120,13 @@
   		<view type="grid" name="sequence-grid" />
   		<view type="form" name="sequence-form" />		
   	</action-view>
+  	
+  	<dashboard name="welcome.dashboard" title="Dashboard">
+  		<dashlet action="" colSpan="4"/>
+  		<dashlet action="" colSpan="4"/>
+  		<dashlet action="" colSpan="4"/>
+  		<dashlet action="" colSpan="4"/>
+  		<dashlet action="" colSpan="4"/>
+  	</dashboard>
   	
 </object-views>

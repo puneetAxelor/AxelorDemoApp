@@ -11,13 +11,14 @@
 	<entity  name="Party" cacheable="true">
 	
 		<string name="reference" title="Reference" sequence="party.reference" readonly="true"/>
-		<string name="name" title="Name" required="true"/>
+		<string name="name" title="Name" required="true" namecolumn="true"/>
 		<string name="type" title="Type" required="true" selection="options.party" default="Company"/>
 		<boolean name="customer" title="Customer"/>
 		<boolean name="supplier" title="Supplier"/>
 		<string name="gstin" title="GSTIN" min="15" max="15" />
-		<one-to-many ref="com.axelor.gst.db.Contact" name="contact" title="Contact"/>
+		<one-to-many ref="com.axelor.gst.db.Contact" name="contact" title="Contact" />
 		<one-to-many ref="com.axelor.gst.db.Address" name="address" title="Address"/>
 	</entity>
   
 </domain-models>    
+

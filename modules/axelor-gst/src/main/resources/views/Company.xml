@@ -15,7 +15,7 @@
 
   	</grid>
   	
-  	<form model="com.axelor.gst.db.Company" title="Company" name="company-form">
+  	<form model="com.axelor.gst.db.Company" width="large" title="Company" name="company-form">
   		<panel>
 	  		<field name="name"/>
 	  		<field name="logo" widget="image"/>

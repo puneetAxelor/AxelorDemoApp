@@ -12,7 +12,7 @@
 
   	</grid>
   	
-  	<form model="com.axelor.gst.db.City" title="City" name="city-form">
+  	<form model="com.axelor.gst.db.City" width="large" title="City" name="city-form">
   		<panel>
 	
 	  		<field name="name"/>

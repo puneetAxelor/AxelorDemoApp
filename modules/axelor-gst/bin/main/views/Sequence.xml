@@ -15,7 +15,7 @@
 
   	</grid>
   	
-  	<form model="com.axelor.gst.db.Sequence" title="Sequence" name="sequence-form">
+  	<form model="com.axelor.gst.db.Sequence" width="large" title="Sequence" name="sequence-form">
   		<panel>
 	  		<field name="prefix"/>
 	  		<field name="suffix"/>
