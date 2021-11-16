@@ -33,7 +33,7 @@
 	  		<button onClick="action-change-status-draft" name="draft" title="Draft"/>
   			<button onClick="action-change-status-validated" name="validated" title="Validated"/>
   			<button onClick="action-change-status-paid" name="paid" title="Paid"/>
-  			<button onClick="action-change-status-cancelled" name="Cancelled" title="Cancelled"/>
+  			<button onClick="action-change-status-cancelled, action-call-netCalculations" name="Cancelled" title="Cancelled"/>
   		</panel>
   		<panel>
 	  		<field name="status" widget="NavSelect" colSpan="12"/>
@@ -51,7 +51,7 @@
 	  		<field name="netCGST"/>
 	  		<field name="netSGST"/>
 	  		<field name="grossAmount"/>
-	  		<field name="invoiceItems"/>
+	  		<field name="invoiceItems" onChange="action-call-netCalculations" />
   		</panel>
   	</form>
   	
@@ -219,5 +219,13 @@
   	<action-attrs name="action-change-status-cancelled">
   		<attribute name="value" for="status" expr="cancelled"/>
   	</action-attrs>
+  	
+  	<action-record name="action-call-netCalculations" model="com.axelor.gst.db.Invoice" >
+  		<field name="netIGST" expr="call:com.axelor.gst.web.InvoiceController:generateNetIgst(5)"/>
+  		<field name="netSGST" expr="call:com.axelor.gst.web.InvoiceController:generateNetSgst(sgst)"/>
+  		<field name="netCGST" expr="call:com.axelor.gst.web.InvoiceController:generateNetCgst(cgst)"/>
+  		<field name="netAmount" expr="call:com.axelor.gst.web.InvoiceController:generateInvoiceNetAmount(netAmount)"/>
+  		<field name="grossAmount" expr="call:com.axelor.gst.web.InvoiceController:generateInvoiceGrossAmount(grossAmount)"/>
+  	</action-record>
   	
 </object-views>

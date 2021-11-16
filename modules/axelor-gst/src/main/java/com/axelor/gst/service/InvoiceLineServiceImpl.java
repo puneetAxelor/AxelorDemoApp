@@ -24,7 +24,7 @@ public class InvoiceLineServiceImpl implements InvoiceLineService {
 	}
 
 	@Override
-	public double generateGrossAmount(double net, double sgst, double cgst) {
+	public double generateGrossAmountSG(double net, double sgst, double cgst) {
 		return net + sgst + cgst;
 	}
 

@@ -10,7 +10,7 @@
 	
 		<string name="status" title="Status" selection="options.Invoice"  readonly="true"/>
 		<many-to-one ref="com.axelor.gst.db.Company" name="company" title="Company" required="true" default="default company"/>
-		<string name="reference" title="Reference" readonly="true"/>
+		<string name="reference"  title="Reference" readonly="true"/>
 		<datetime name="dateTime" tz="true" title="Date"/>
 		<integer name="priority" title="Priority"/>
 		<many-to-one ref="com.axelor.gst.db.Party" name="party" title="Party" required="true"/>

@@ -10,5 +10,5 @@ public interface InvoiceLineService {
 
 	double generateGrossAmount(double net, double igst);
 
-	double generateGrossAmount(double net, double sgst, double cgst);
+	double generateGrossAmountSG(double net, double sgst, double cgst);
 }

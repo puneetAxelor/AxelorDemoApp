@@ -88,15 +88,40 @@
   		<view type="kanban" name="invoice-kanban"/>
   	</action-view>
   	
-  	<menuitem title="Draft Invoices" name="dashboard-root-invoice-draftInvoices" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-invoice" action="action.dashboard.root.product" />
+  	<menuitem title="Draft Invoices" name="dashboard-root-invoice-draftInvoices" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-invoice" action="action.dashboard.root.draftInvoice" />
   	
-  	<menuitem title="Validated Invoices" name="dashboard-root-invoice-validatedInvoices" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-invoice" action="action.dashboard.root.product" />
+  	<action-view name="action.dashboard.root.draftInvoice" title="Draft invoice" model="com.axelor.gst.db.Invoice" icon="fas fa-user"  >
+  		<view type="grid" name="invoice-grid" />
+  		<domain>self.status='draft'</domain>	
+  	</action-view>
   	
-  	<menuitem title="Paid Invoices" name="dashboard-root-invoice-paidInvoices" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-invoice" action="action.dashboard.root.product" />
   	
-  	<menuitem title="Cancelled Invoices" name="dashboard-root-invoice-cancelledInvoices" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-invoice" action="action.dashboard.root.product" />
+  	<menuitem title="Validated Invoices" name="dashboard-root-invoice-validatedInvoices" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-invoice" action="action.dashboard.root.validatedInvoice" />
   	
-  	<menuitem title="All Invoices" name="dashboard-root-invoice-allInvoices" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-invoice" action="action.dashboard.root.product" />
+  	<action-view name="action.dashboard.root.validatedInvoice" title="Validated invoice" model="com.axelor.gst.db.Invoice" icon="fas fa-user"  >
+  		<view type="grid" name="invoice-grid" />
+  		<domain>self.status='validated'</domain>	
+  	</action-view>
+  	
+  	<menuitem title="Paid Invoices" name="dashboard-root-invoice-paidInvoices" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-invoice" action="action.dashboard.root.paidInvoice" />
+  	
+  	<action-view name="action.dashboard.root.paidInvoice" title="Paid invoice" model="com.axelor.gst.db.Invoice" icon="fas fa-user"  >
+  		<view type="grid" name="invoice-grid" />
+  		<domain>self.status='paid'</domain>	
+  	</action-view>
+  	
+  	<menuitem title="Cancelled Invoices" name="dashboard-root-invoice-cancelledInvoices" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-invoice" action="action.dashboard.root.cancelledInvoice" />
+  	
+  	<action-view name="action.dashboard.root.cancelledInvoice" title="Cancelled invoice" model="com.axelor.gst.db.Invoice" icon="fas fa-user"  >
+  		<view type="grid" name="invoice-grid" />
+  		<domain>self.status='cancelled'</domain>	
+  	</action-view>
+  	
+  	<menuitem title="All Invoices" name="dashboard-root-invoice-allInvoices" icon="fa-id-card" icon-background="blue"  parent="dashboard-root-invoice" action="action.dashboard.root.allInvoice" />
+  	
+  	<action-view name="action.dashboard.root.allInvoice" title="All invoice" model="com.axelor.gst.db.Invoice" icon="fas fa-user"  >
+  		<view type="grid" name="invoice-grid" />
+  	</action-view>
   	
   	<menuitem title="Company" name="dashboard-root-company" icon="fa-id-card" icon-background="blue"  parent="dashboard-root" />
   	

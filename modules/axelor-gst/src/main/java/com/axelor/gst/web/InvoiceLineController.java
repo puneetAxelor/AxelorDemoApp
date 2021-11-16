@@ -38,8 +38,8 @@ public class InvoiceLineController {
 	}
 	
 	@CallMethod
-	public double generateGrossAmount(double net, double sgst, double cgst) {
-		return service.generateGrossAmount(net, sgst, cgst);
+	public double generateGrossAmountSG(double net, double sgst, double cgst) {
+		return service.generateGrossAmountSG(net, sgst, cgst);
 		
 	}
 }
