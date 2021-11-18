@@ -8,8 +8,8 @@
 	
 	<entity name="Invoice" cacheable="true">
 	
-		<string name="status" title="Status" selection="options.Invoice"  readonly="true"/>
-		<many-to-one ref="com.axelor.gst.db.Company" name="company" title="Company" required="true" default="default company"/>
+		<string name="status" selection="options.Invoice"  readonly="true"/>
+		<many-to-one ref="com.axelor.gst.db.Company" name="company" title="Company" required="true"/>
 		<string name="reference"  title="Reference" readonly="true"/>
 		<datetime name="dateTime" tz="true" title="Date"/>
 		<integer name="priority" title="Priority"/>
@@ -17,12 +17,12 @@
 		<many-to-one ref="com.axelor.gst.db.Contact" name="partyContact" title="Party contact"/>
 		<many-to-one ref="com.axelor.gst.db.Address" name="invoiceAddress" title="Invoice address" required="true"/>
 		<many-to-one ref="com.axelor.gst.db.Address" name="shippingAddress" title="Shipping address"/>
-		<boolean name="useInvoiceAddressAsShipping" title="Use invoice address as shipping"/>
-		<decimal name="netAmount" title="Net amount" readonly="true"/>
+		<boolean name="useInvoiceAddressAsShipping" title="Use invoice address as shipping" default="true"/>
+		<decimal name="netAmountIn" title="Net amount" readonly="true"/>
 		<decimal name="netIGST" title="Net IGST" readonly="true"/>
 		<decimal name="netCGST" title="Net CGST" readonly="true"/>
 		<decimal name="netSGST" title="Net SGST" readonly="true"/>
-		<decimal name="grossAmount" title="Gross amount" readonly="true"/>
+		<decimal name="grossAmountIn" title="Gross amount" readonly="true"/>
 		<one-to-many ref="com.axelor.gst.db.InvoiceLine" name="invoiceItems" title="Invoice items"/>		
 	</entity>
   

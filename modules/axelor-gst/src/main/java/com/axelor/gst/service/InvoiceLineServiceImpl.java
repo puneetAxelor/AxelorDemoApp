@@ -1,31 +1,91 @@
 package com.axelor.gst.service;
 
+import java.math.BigDecimal;
+
+import com.axelor.gst.db.Invoice;
+import com.axelor.gst.db.InvoiceLine;
+
 public class InvoiceLineServiceImpl implements InvoiceLineService {
 
 	@Override
-	public double generateNetAmount(int qty, double price) {
-		return qty * price;
-	}
-
-	@Override
-	public double generateIgst(double net, double gst) {
+	public BigDecimal generateNetAmount(InvoiceLine invoiceLine) {
+		BigDecimal price = invoiceLine.getPrice();
+		BigDecimal qty = new BigDecimal(invoiceLine.getQty());
+		BigDecimal result = BigDecimal.ZERO;
+		if (price != null && qty != null) {
+				result = qty.multiply(price);
+		}
 		
-		return net * gst;
+		return result;
 	}
-
+	
 	@Override
-	public double generateSgst(double net, double gst) {
-		return net * gst / 2;
+	public BigDecimal generateGrossAmount(InvoiceLine invoiceLine, Invoice invoice) {
+		BigDecimal igst = invoiceLine.getIgst();
+		BigDecimal net = invoiceLine.getNetAmount();
+		BigDecimal result = BigDecimal.ZERO;
+		if (igst != null && net != null) {
+			if (invoice.getInvoiceAddress().getState() != invoice.getCompany().getAddress().getState()) {
+				result = igst.add(net);			
+			}
+		}
+		return result;
 	}
-
+	
 	@Override
-	public double generateGrossAmount(double net, double igst) {
-		return net + igst;
+	public BigDecimal generateGrossAmountSG(InvoiceLine invoiceLine, Invoice invoice) {
+		BigDecimal igst = invoiceLine.getIgst();
+		BigDecimal net = invoiceLine.getNetAmount();
+		BigDecimal result = BigDecimal.ZERO;
+		if (igst != null && net != null) {
+			if (invoice.getInvoiceAddress().getState() == invoice.getCompany().getAddress().getState()) {
+				result = igst.add(net);			
+			}
+		}
+		return result;
 	}
-
+	
 	@Override
-	public double generateGrossAmountSG(double net, double sgst, double cgst) {
-		return net + sgst + cgst;
+	public BigDecimal generateIgst(InvoiceLine invoiceLine, Invoice invoice) {
+		System.out.println("Inside igst invoice line");
+		BigDecimal gst = invoiceLine.getGstRate();
+		BigDecimal net = invoiceLine.getNetAmount();
+		BigDecimal result = BigDecimal.ZERO;
+		if (gst != null && net != null) {
+			if (invoice.getInvoiceAddress().getState() != invoice.getCompany().getAddress().getState()) {
+				result = gst.multiply(net);
+			}	
+		}	
+		return result;
 	}
+	
+	@Override
+	public BigDecimal generateCgst(InvoiceLine invoiceLine, Invoice invoice) {	
+		BigDecimal gst = invoiceLine.getGstRate();
+		BigDecimal net = invoiceLine.getNetAmount();
+		BigDecimal result = BigDecimal.ZERO;
+		BigDecimal divisor = new BigDecimal("2");
+		if (gst != null && net != null) {
+			if (invoice.getInvoiceAddress().getState() == invoice.getCompany().getAddress().getState()) {
+				result = gst.multiply(net);
+			}
+		}
+		return result.divide(divisor);
+	}
+	
+	@Override
+	public BigDecimal generateSgst(InvoiceLine invoiceLine, Invoice invoice) {
+		
+		BigDecimal gst = invoiceLine.getGstRate();
+		BigDecimal net = invoiceLine.getNetAmount();
+		BigDecimal result = BigDecimal.ZERO;
+		BigDecimal divisor = new BigDecimal("2");
+		if (gst != null && net != null) {
+			if (invoice.getInvoiceAddress().getState() == invoice.getCompany().getAddress().getState()) {
+				result = gst.multiply(net);
+			}	
+		}
+		return result.divide(divisor);
+	}	
 
 }

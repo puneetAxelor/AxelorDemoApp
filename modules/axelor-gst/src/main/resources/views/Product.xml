@@ -15,7 +15,7 @@
   		<field name="category"/>
   		<field name="salePrice"/>
   		<field name="costPrice"/>
-  		<field name="image" widget="binary-link"/>
+  		<field name="image" widget="image"/>
   		<field name="gstRate"/>
 
   	</grid>
@@ -28,7 +28,7 @@
 	  		<field name="category" onChange="action-gstRate"/>
 	  		<field name="salePrice"/>
 	  		<field name="costPrice"/>
-	  		<field name="image" widget="binary-link"/>
+	  		<field name="image" widget="image"/>
 	  		<field name="gstRate"/>
 	  	</panel>
   	</form>

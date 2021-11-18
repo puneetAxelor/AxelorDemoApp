@@ -1,15 +1,19 @@
 package com.axelor.gst.service;
 
+import java.math.BigDecimal;
+
+import com.axelor.gst.db.Invoice;
+
 public interface InvoiceService {
 
-	double generateInvoiceNetAmount(double netAmount);
+	BigDecimal generateInvoiceNetAmount(Invoice invoice);
 
-	double generateNetIgst(double igst);
+	BigDecimal generateNetIgst(Invoice invoice);
 
-	double generateNetSgst(double sgst);
+	BigDecimal generateNetSgst(Invoice invoice);
 	
-	double generateInvoiceGrossAmount(double grossAmount);
+	BigDecimal generateInvoiceGrossAmount(Invoice invoice);
 
-	double generateNetCgst(double cgst);
+	BigDecimal generateNetCgst(Invoice invoice);
 
 }

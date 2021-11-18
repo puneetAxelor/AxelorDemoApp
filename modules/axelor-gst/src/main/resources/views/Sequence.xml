@@ -15,7 +15,7 @@
 
   	</grid>
   	
-  	<form model="com.axelor.gst.db.Sequence" width="large" title="Sequence" name="sequence-form">
+  	<form model="com.axelor.gst.db.Sequence" width="large" title="Sequence" name="sequence-form" onSave="action-initial-sequence">
   		<panel>
 	  		<field name="prefix"/>
 	  		<field name="suffix"/>
@@ -24,5 +24,9 @@
 	  		<field name="model"/>
   		</panel>
   	</form>
+  	
+  	<action-record name="action-initial-sequence" model="com.axelor.gst.db.Sequence" >
+  		<field name="nextNumber" expr="call:com.axelor.gst.web.SequenceController:generateSequence(prefix, padding, suffix)"/>
+  	</action-record>
   	
 </object-views>

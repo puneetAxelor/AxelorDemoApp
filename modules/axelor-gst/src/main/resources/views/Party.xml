@@ -45,9 +45,9 @@
 	  		<field name="address"> 
 	  			<viewer><![CDATA[
 				  <address>
-				  {{record.type}}, {{record.line1}},<br>
-				  {{record.line2}}, {{record.city}}, {{record.state}},<br>
-				  {{record.country.name}}, {{record.pinCode}}
+				  Type:  {{record.type}}<br> Line1: {{record.line1}} <br>
+				  Line2: {{record.line2}} <br> City: {{record.city.name}} <br> State: {{record.state.name}} <br>
+				  Country: {{record.country.name}} <br> PinCode: {{record.pinCode}}
 				  </address>
 				  ]]></viewer>
 				  <editor x-show-titles="false">
