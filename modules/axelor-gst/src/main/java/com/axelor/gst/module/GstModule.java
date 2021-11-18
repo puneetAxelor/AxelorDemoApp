@@ -3,6 +3,8 @@ package com.axelor.gst.module;
 import com.axelor.app.AxelorModule;
 import com.axelor.gst.service.AddressService;
 import com.axelor.gst.service.AddressServiceImpl;
+import com.axelor.gst.service.ContactService;
+import com.axelor.gst.service.ContactServiceImpl;
 import com.axelor.gst.service.InvoiceLineService;
 import com.axelor.gst.service.InvoiceLineServiceImpl;
 import com.axelor.gst.service.InvoiceService;
@@ -18,5 +20,6 @@ public class GstModule extends AxelorModule {
 		bind(InvoiceService.class).to(InvoiceServiceImpl.class);
 		bind(SequenceService.class).to(SequenceServiceImpl.class);
 		bind(AddressService.class).to(AddressServiceImpl.class);
+		bind(ContactService.class).to(ContactServiceImpl.class);
 	}
 }

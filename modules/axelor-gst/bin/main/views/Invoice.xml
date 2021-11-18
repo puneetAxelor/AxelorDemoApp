@@ -40,7 +40,7 @@
 	  		<field name="company"/>
 	  		<field name="reference"/>
 	  		<field name="dateTime"/>
-	  		<field name="party" onChange="action-party-invoice, action-party-shipping"/>
+	  		<field name="party" onChange="action-party-invoice, action-party-shipping, action-party-contact"/>
 	  		<field name="partyContact"/>
 	  		<field name="invoiceAddress" />
 	  		<field name="shippingAddress" hideIf="useInvoiceAddressAsShipping == true" />
@@ -217,6 +217,10 @@
   	<action-method name="act.hello">
  	 <call class="com.axelor.contact.web.HelloController" method="say"/>
 	</action-method>
+  	
+  	<action-method name="action-party-contact" >
+  		<call class="com.axelor.gst.web.ContactController" method="generateContact"/>
+  	</action-method>
   	
   	<action-method name="action-party-invoice" >
   		<call class="com.axelor.gst.web.AddressController" method="generateInvoiceAddress"/>
